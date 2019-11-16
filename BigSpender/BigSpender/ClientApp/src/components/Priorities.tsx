@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import ReactTags from 'react-tag-autocomplete';
 import { Button, Heading } from 'grommet';
+import { RouteComponentProps } from '@reach/router';
 
-const Priorities: React.FC = () => {
+const Priorities: FC<RouteComponentProps> = () => {
   const priorityOptions = [
     {
       id: 0,
@@ -53,7 +54,7 @@ const Priorities: React.FC = () => {
         Define your <strong>dangerous</strong> spending areas:
       </Heading>
       <p>Things that you want to spend as little money on as possible</p>
-      <Button color="primary" label="I'm set! Take me to the app" />
+      <Button primary label="I'm set! Take me to the app" />
     </div>
   );
 };
