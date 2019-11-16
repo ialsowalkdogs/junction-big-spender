@@ -8,9 +8,9 @@ import {
   Text,
   Paragraph
 } from 'grommet';
-// import Select as ReactSelect from 'react-select';
+import { RouteComponentProps, Link } from '@reach/router';
 
-const Setup: FC = () => {
+const Setup: FC<RouteComponentProps> = () => {
   const [startValue, setStartValue] = useState('');
   const [savingsValue, setSavingsValue] = useState('');
   const [difficulty, setDifficulty] = useState('');
@@ -126,11 +126,13 @@ const Setup: FC = () => {
             <p>{value.value}</p>
           ))}
 
-          <Button
-            primary
-            margin="xsmall"
-            label="Sounds good! Let's make me rich"
-          />
+          <Link to="/">
+            <Button
+              primary
+              margin="xsmall"
+              label="Sounds good! Let's make me rich"
+            />
+          </Link>
           <Button
             margin="xsmall"
             label="Wait! Something's wrong. Let me fix that"

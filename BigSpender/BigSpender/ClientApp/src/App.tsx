@@ -1,12 +1,17 @@
 import React from 'react';
 import Priorities from './components/Priorities';
 import Setup from './components/Setup';
+import Dashboard from './components/Dashboard';
+import { Router } from '@reach/router';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Setup />
-      <Priorities />
+      <Router>
+        <Setup path="setup" />
+        <Priorities path="priorities" />
+        <Dashboard path="/" />
+      </Router>
     </div>
   );
 };
