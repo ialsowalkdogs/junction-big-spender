@@ -15,7 +15,7 @@ const Setup: FC = () => {
   const [savingsValue, setSavingsValue] = useState('');
   const [difficulty, setDifficulty] = useState('');
 
-  const [budget, setBudget] = useState({});
+  const [budget, setBudget] = useState([] as any[]);
 
   const financialStartOptions = [
     'Really bad',
@@ -37,17 +37,33 @@ const Setup: FC = () => {
     { value: '15%: savings' }
   ];
 
+  const mediumBudget = [
+    { value: '50%: base expenses' },
+    { value: '25%: fun money' },
+    { value: '25%: savings' }
+  ];
+
   const poorBudget = [
     { value: '50%: base expenses' },
     { value: '35%: savings' },
     { value: '15%: fun money' }
   ];
 
-  const chooseBudget = (start: string, savings: string) => {
+  const chooseBudget = (start: string, savings: string, difficulty: string) => {
     switch (true) {
       case difficulty === 'Hard mode':
       case start === 'Really bad' && savings === 'None at all': {
         setBudget(poorBudget);
+        break;
+      }
+      case start === 'Have some savings' ||
+        savings === '1-2 months of expenses': {
+        setBudget(mediumBudget);
+        break;
+      }
+      case savings === 'Over 3 months of expenses': {
+        setBudget(goodBudget);
+        break;
       }
     }
   };
@@ -86,19 +102,32 @@ const Setup: FC = () => {
             value={difficulty}
             onChange={({ option }) => setDifficulty(option)}
           />
+          <Button
+            primary
+            margin="xsmall"
+            label="I'm done"
+            onClick={e => chooseBudget(startValue, savingsValue, difficulty)}
+          />
         </>
       )}
 
-      {startValue && savingsValue && difficulty && (
+      {budget.length > 0 && (
         <>
           <Paragraph>Okay. I advise you to set your budget as this:</Paragraph>
+
+          {budget.map((value: any) => (
+            <p>{value.value}</p>
+          ))}
 
           <Button
             primary
             margin="xsmall"
             label="Sounds good! Let's make me rich"
           />
-          <Button margin="xsmall" label="Something's wrong. Let me fix that" />
+          <Button
+            margin="xsmall"
+            label="Wait! Something's wrong. Let me fix that"
+          />
         </>
       )}
     </Box>
