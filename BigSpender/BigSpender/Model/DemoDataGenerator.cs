@@ -41,7 +41,34 @@ namespace BigSpender.Model
                         Name = "Fun"
                     });
 
-                context.SavingsPlans.AddRange();
+                context.SavingsPlans.AddRange(
+                    new SavingsPlan
+                    {
+                        Id = 1,
+                        Name = "Vacation Savings",
+                        BlockRate = 0.15M,
+                        Description = "Put away 15% of your income for vacation"
+                    }, new SavingsPlan
+                    {
+                        Id = 2,
+                        Name = "Retirement Savings",
+                        BlockRate = 0.05M,
+                        Description = "Put away 5% of your income to save for retirement"
+                    },
+                    new SavingsPlan
+                    {
+                        Id = 3,
+                        Name = "Emergency Fund",
+                        BlockRate = 0.30M,
+                        Description = "Create an emergency fund, up to 6 monthly salaries"
+                    },
+                    new SavingsPlan
+                    {
+                        Id = 4,
+                        Name = "Flexible Savings",
+                        BlockRate = null,
+                        Description = "Save what you want, when you want"
+                    });
                 context.SaveChanges();
 
                 context.Merchants.AddRange(
@@ -86,13 +113,91 @@ namespace BigSpender.Model
                     });
                 context.SaveChanges();
 
-                context.UserLivingCosts.AddRange();
+                context.UserLivingCosts.AddRange(
+                    new UserLivingCost
+                    {
+                        Id = 1,
+                        User = context.Users.Find(1L),
+                        ExpenseCategory = context.ExpenseCategories.Find(1L),
+                        Value = 500.00M
+                    }, 
+                    new UserLivingCost
+                    {
+                        Id = 2,
+                        User = context.Users.Find(1L),
+                        ExpenseCategory = context.ExpenseCategories.Find(2L),
+                        Value = 500.00M
+                    },
+                    new UserLivingCost
+                    {
+                        Id = 3,
+                        User = context.Users.Find(1L),
+                        ExpenseCategory = context.ExpenseCategories.Find(3L),
+                        Value = 500.00M
+                    });
                 context.SaveChanges();
 
-                context.Accounts.AddRange();
+                context.Accounts.AddRange(
+                    new Account
+                    {
+                        Id = 1,
+                        User = context.Users.Find(1L),
+                        Name = "Disposal account",
+                        SavingsPlan = null,
+                        BlockValue = null,
+                        Balance = 1000.00M,
+                        Rate = 0.00M,
+                        Goal = null
+                    }, 
+                    new Account
+                    {
+                        Id = 2,
+                        User = context.Users.Find(1L),
+                        Name = "Flexible savings",
+                        SavingsPlan = context.SavingsPlans.Find(4L),
+                        BlockValue = null,
+                        Balance = 500.00M,
+                        Rate = 0.01M,
+                        Goal = null
+                    }, 
+                    new Account
+                    {
+                        Id = 3,
+                        User = context.Users.Find(1L),
+                        Name = "Retierment savings",
+                        SavingsPlan = context.SavingsPlans.Find(2L),
+                        BlockValue = context.SavingsPlans.Find(2L).BlockRate * context.Users.Find(1L).MonthlyIncome,
+                        Balance = 1500.00M,
+                        Rate = 0.05M,
+                        Goal = 50000.00M
+                    });
                 context.SaveChanges();
 
-                context.Transactions.AddRange();
+                context.Transactions.AddRange(
+                    new Transaction
+                    {
+                        Id = 1,
+                        User = context.Users.Find(1L),
+                        Account = context.Accounts.Find(1L),
+                        Merchant = context.Merchants.Find(3L),
+                        Value = 500.00M
+                    }, 
+                    new Transaction
+                    {
+                        Id = 2,
+                        User = context.Users.Find(1L),
+                        Account = context.Accounts.Find(1L),
+                        Merchant = context.Merchants.Find(2L),
+                        Value = 3.50M
+                    }, 
+                    new Transaction
+                    {
+                        Id = 3,
+                        User = context.Users.Find(1L),
+                        Account = context.Accounts.Find(1L),
+                        Merchant = context.Merchants.Find(5L),
+                        Value = 22.00M
+                    });
                 context.SaveChanges();
             }
         }
