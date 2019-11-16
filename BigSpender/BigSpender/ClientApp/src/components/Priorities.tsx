@@ -53,7 +53,7 @@ const Priorities: React.FC = () => {
         Define your <strong>dangerous</strong> spending areas:
       </Heading>
       <p>Things that you want to spend as little money on as possible</p>
-      <Button color="primary" label="I'm set! Take me to the app" />
+      <Button primary label="I'm set! Take me to the app" />
     </div>
   );
 };
