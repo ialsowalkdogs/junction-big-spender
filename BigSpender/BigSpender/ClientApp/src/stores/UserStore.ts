@@ -14,7 +14,7 @@ class UserStore {
     },
     goal: {
       name: 'Christmas vacation fund',
-      target: 80.0,
+      target: 70.0,
       currentAmount: 57.5
     }
   };
