@@ -2,10 +2,12 @@ import { createContext, useContext } from 'react';
 import { observable, action, computed } from 'mobx';
 
 class UserStore {
+  @observable isCreated = false;
+
   @observable user = {
     name: '',
     monthlyIncome: 0,
-    currentBalance: 5700.0,
+    currentBalance: 10,
     expenses: {
       housing: 0,
       utilities: 0,
@@ -16,25 +18,28 @@ class UserStore {
       name: 'Christmas vacation fund',
       target: 70.0,
       currentAmount: 57.5
-    },
-    monthlySavings: [
+    }
+  };
+
+  @computed get monthlySavings() {
+    return [
       {
         name: 'Fixed monthly savings',
         description: '15% of your monthly income',
-        amount: 495.0
+        amount: Math.round(this.user.monthlyIncome * 0.15)
       },
       {
         name: 'Emergency fund',
         description: 'Total: 3x monthly income',
-        amount: 200.0
+        amount: Math.round(this.user.monthlyIncome * 3)
       },
       {
         name: 'Retirement fund',
         description: '5% of your monthly income',
-        amount: 160.0
+        amount: Math.round(this.user.monthlyIncome * 0.05)
       }
-    ]
-  };
+    ];
+  }
 
   @computed get goalPercentage() {
     return Math.round(
@@ -42,9 +47,29 @@ class UserStore {
     );
   }
 
-  @computed get totalMonthlyBlockers() {
-    return this.user.monthlySavings.reduce((acc, curr) => acc + curr.amount, 0);
+  @computed get totalBasicMonthlyCosts() {
+    return Object.values(this.user.expenses).reduce(
+      (acc, curr) => +acc + +curr,
+      0
+    );
   }
+
+  @computed get totalMonthlyBlockers() {
+    return this.monthlySavings.reduce((acc, curr) => acc + curr.amount, 0);
+  }
+
+  @computed get funMoney() {
+    return (
+      this.user.currentBalance -
+      this.user.monthlyIncome -
+      this.totalBasicMonthlyCosts -
+      this.totalMonthlyBlockers
+    );
+  }
+
+  @action createUser = () => {
+    this.isCreated = true;
+  };
 
   @action setUser = (name: string) => {
     this.user.name = name;
@@ -55,7 +80,7 @@ class UserStore {
   };
 
   @action setCurrentBalance = (income: number) => {
-    this.user.monthlyIncome = income;
+    this.user.currentBalance = income;
   };
 
   @action setExpenses = (id: string, value: any) => {

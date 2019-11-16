@@ -17,8 +17,9 @@ import { useUserStore } from '../stores/UserStore';
 
 const BasicInfo: FC<RouteComponentProps> = observer(() => {
   const {
-    user,
+    user: { name, monthlyIncome, currentBalance, expenses },
     setUser,
+    createUser,
     setMonthlyIncome,
     setCurrentBalance,
     setExpenses
@@ -60,7 +61,7 @@ const BasicInfo: FC<RouteComponentProps> = observer(() => {
       <FormField label="Name">
         <TextInput
           placeholder="Enter your name"
-          value={user.name}
+          value={name}
           onChange={e => onNameChange(e)}
         />
       </FormField>
@@ -68,9 +69,9 @@ const BasicInfo: FC<RouteComponentProps> = observer(() => {
       <Paragraph>How much money do you make per month?</Paragraph>
       <FormField label="Monthly income">
         <TextInput
-          placeholder="Enter your monthly income"
           type="number"
-          value={user.monthlyIncome}
+          placeholder="Enter your monthly income"
+          value={monthlyIncome}
           onChange={e => onIncomeChange(e)}
         />
       </FormField>
@@ -81,9 +82,9 @@ const BasicInfo: FC<RouteComponentProps> = observer(() => {
       </Paragraph>
       <FormField label="Current balance">
         <TextInput
-          placeholder="Enter your current balance"
           type="number"
-          value={user.currentBalance}
+          placeholder="Enter your current balance"
+          value={currentBalance}
           onChange={e => onBalanceChange(e)}
         />
       </FormField>
@@ -97,7 +98,7 @@ const BasicInfo: FC<RouteComponentProps> = observer(() => {
             id="housing"
             placeholder="Rent, mortgage or anything else"
             type="number"
-            value={user.expenses['housing']}
+            value={expenses['housing']}
             onChange={e => onExpenseChange(e)}
           />
         </FormField>
@@ -106,7 +107,7 @@ const BasicInfo: FC<RouteComponentProps> = observer(() => {
             id="utilities"
             placeholder="Electricity, water..."
             type="number"
-            value={user.expenses['utilities']}
+            value={expenses['utilities']}
             onChange={e => onExpenseChange(e)}
           />
         </FormField>
@@ -115,7 +116,7 @@ const BasicInfo: FC<RouteComponentProps> = observer(() => {
             id="food"
             placeholder="Grocery shopping and daily expenses"
             type="number"
-            value={user.expenses['food']}
+            value={expenses['food']}
             onChange={e => onExpenseChange(e)}
           />
         </FormField>
@@ -124,12 +125,17 @@ const BasicInfo: FC<RouteComponentProps> = observer(() => {
             id="entertainment"
             placeholder="Restaurants, bars, going out"
             type="number"
-            value={user.expenses['entertainment']}
+            value={expenses['entertainment']}
             onChange={e => onExpenseChange(e)}
           />
         </FormField>
-        <Link to="/setup">
-          <Button type="submit" label="Next" primary />
+        <Link to="/">
+          <Button
+            type="submit"
+            label="Create my profile"
+            primary
+            onClick={createUser}
+          />
         </Link>
       </Form>
     </Box>

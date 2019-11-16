@@ -11,8 +11,8 @@ import {
 } from 'grommet';
 import { useUserStore } from '../stores/UserStore';
 
-const BlockerSavings: FC = observer(() => {
-  const { user, monthlySavings, totalMonthlyBlockers } = useUserStore();
+const BasicLivingCosts: FC = observer(() => {
+  const { user, totalBasicMonthlyCosts } = useUserStore();
   return (
     <Box
       pad="small"
@@ -22,15 +22,15 @@ const BlockerSavings: FC = observer(() => {
       width="48%"
     >
       <Heading level="2" alignSelf="center">
-        Blocker Savings
+        Basic Living Costs
       </Heading>
       <Paragraph
         size="xxlarge"
-        color="status-ok"
+        color="brand"
         margin={{ vertical: 'xsmall' }}
         alignSelf="center"
       >
-        {`€ ${totalMonthlyBlockers}`}
+        {`€ ${totalBasicMonthlyCosts}`}
       </Paragraph>
 
       <Table style={{ width: '100%' }}>
@@ -40,21 +40,18 @@ const BlockerSavings: FC = observer(() => {
               Monthly extractions
             </TableCell>
             <TableCell scope="col" border="bottom">
-              {`€ ${totalMonthlyBlockers}`}
+              {`€ ${totalBasicMonthlyCosts}`}
             </TableCell>
           </TableRow>
         </TableHeader>
-        {monthlySavings.map(row => {
+        {Object.entries(user.expenses).map(row => {
           return (
             <TableRow>
-              <TableCell>
-                {row.name}
-                <Paragraph size="small">{row.description}</Paragraph>
-              </TableCell>
+              <TableCell>{row[0]}</TableCell>
               <TableCell
                 verticalAlign="top"
-                color="status-ok"
-              >{`€ ${row.amount}`}</TableCell>
+                color="brand"
+              >{`€ ${row[1]}`}</TableCell>
             </TableRow>
           );
         })}
@@ -63,4 +60,4 @@ const BlockerSavings: FC = observer(() => {
   );
 });
 
-export default BlockerSavings;
+export default BasicLivingCosts;
