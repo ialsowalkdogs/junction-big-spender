@@ -1,23 +1,37 @@
 import { createContext, useContext } from 'react';
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 
 class UserStore {
   @observable user = {
     name: '',
     monthlyIncome: 0,
+    currentBalance: 5700.0,
     expenses: {
       housing: 0,
       utilities: 0,
       food: 0,
       entertainment: 0
+    },
+    goal: {
+      name: 'Christmas vacation fund',
+      target: 80.0,
+      currentAmount: 57.5
     }
   };
+
+  @computed get goalPercentage() {
+    return (this.user.goal.currentAmount / this.user.goal.target) * 100;
+  }
 
   @action setUser = (name: string) => {
     this.user.name = name;
   };
 
   @action setMonthlyIncome = (income: number) => {
+    this.user.monthlyIncome = income;
+  };
+
+  @action setCurrentBalance = (income: number) => {
     this.user.monthlyIncome = income;
   };
 
