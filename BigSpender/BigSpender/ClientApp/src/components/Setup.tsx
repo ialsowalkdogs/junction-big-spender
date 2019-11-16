@@ -68,6 +68,13 @@ const Setup: FC = () => {
     }
   };
 
+  const resetValues = (e: any) => {
+    setStartValue('');
+    setSavingsValue('');
+    setDifficulty('');
+    setBudget([] as any[]);
+  };
+
   return (
     <Box align="center">
       <Heading level="1">Hello!</Heading>
@@ -127,6 +134,7 @@ const Setup: FC = () => {
           <Button
             margin="xsmall"
             label="Wait! Something's wrong. Let me fix that"
+            onClick={e => resetValues(e)}
           />
         </>
       )}
