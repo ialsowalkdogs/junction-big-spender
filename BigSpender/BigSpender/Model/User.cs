@@ -10,7 +10,7 @@ namespace BigSpender.Model
         public long Id { get; set; }
         public string Name { get; set; }
         public decimal MonthlyIncome { get; set; }
-        public List<ExpenseCategory> ExpenseCategories { get; set; }
+        public List<UserLivingCost> UserLivingCosts { get; set; }
         public enum FinancialLevel {InDebt, Unemployed, InMortgage, Comfortable }
         public enum Difficulty {Easy, Hard}
     }

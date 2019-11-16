@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BigSpender.Model
 {
-    public class UserLivingCosts
+    public class UserLivingCost
     {
         public long Id { get; set; }
         public User User { get; set; }
