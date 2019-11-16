@@ -3,6 +3,8 @@ import { RouteComponentProps, Link } from '@reach/router';
 import { Box, Heading, Paragraph, Meter } from 'grommet';
 import { useUserStore } from '../stores/UserStore';
 import { observer } from 'mobx-react';
+import BlockerSavings from './BlockerSavings';
+import SavingPlans from './SavingPlans';
 
 const Dashboard: FC<RouteComponentProps> = observer(() => {
   const { user, goalPercentage } = useUserStore();
@@ -16,7 +18,7 @@ const Dashboard: FC<RouteComponentProps> = observer(() => {
   //   );
   // else
   return (
-    <Box background="#202020" pad="large" style={{ height: '100vh' }}>
+    <Box background="#202020" pad="large" style={{ height: '100%' }}>
       <Box
         align="stretch"
         alignContent="center"
@@ -53,7 +55,7 @@ const Dashboard: FC<RouteComponentProps> = observer(() => {
             Yesterday’s investment return
           </Heading>
           <Paragraph
-            size="large"
+            size="xxlarge"
             color="accent-4"
             margin={{ vertical: 'xsmall' }}
           >
@@ -81,6 +83,11 @@ const Dashboard: FC<RouteComponentProps> = observer(() => {
             {`${user.goal.name}: € ${user.goal.currentAmount}`}
           </Paragraph>
         </Box>
+      </Box>
+
+      <Box direction="row" justify="between">
+        <BlockerSavings />
+        <SavingPlans />
       </Box>
     </Box>
   );

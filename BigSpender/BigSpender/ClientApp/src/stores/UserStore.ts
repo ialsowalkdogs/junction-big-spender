@@ -16,11 +16,34 @@ class UserStore {
       name: 'Christmas vacation fund',
       target: 70.0,
       currentAmount: 57.5
-    }
+    },
+    monthlySavings: [
+      {
+        name: 'Fixed monthly savings',
+        description: '15% of your monthly income',
+        amount: 495.0
+      },
+      {
+        name: 'Emergency fund',
+        description: 'Total: 3x monthly income',
+        amount: 200.0
+      },
+      {
+        name: 'Retirement fund',
+        description: '5% of your monthly income',
+        amount: 160.0
+      }
+    ]
   };
 
   @computed get goalPercentage() {
-    return (this.user.goal.currentAmount / this.user.goal.target) * 100;
+    return Math.round(
+      (this.user.goal.currentAmount / this.user.goal.target) * 100
+    );
+  }
+
+  @computed get totalMonthlyBlockers() {
+    return this.user.monthlySavings.reduce((acc, curr) => acc + curr.amount, 0);
   }
 
   @action setUser = (name: string) => {
