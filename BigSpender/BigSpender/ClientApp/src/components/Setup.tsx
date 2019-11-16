@@ -77,10 +77,9 @@ const Setup: FC<RouteComponentProps> = () => {
 
   return (
     <Box align="center">
-      <Heading level="1">Hello!</Heading>
-      <Paragraph>Tell us a bit about yourself.</Paragraph>
+      <Heading level="1">A little more now.</Heading>
 
-      <Paragraph>How well are you doing?</Paragraph>
+      <Paragraph>How well are you doing financially?</Paragraph>
       <Select
         options={financialStartOptions}
         value={startValue}
