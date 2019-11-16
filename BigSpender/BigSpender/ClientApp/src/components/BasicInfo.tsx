@@ -16,7 +16,13 @@ import { observer } from 'mobx-react';
 import { useUserStore } from '../stores/UserStore';
 
 const BasicInfo: FC<RouteComponentProps> = observer(() => {
-  const { user, setUser, setMonthlyIncome, setExpenses } = useUserStore();
+  const {
+    user,
+    setUser,
+    setMonthlyIncome,
+    setCurrentBalance,
+    setExpenses
+  } = useUserStore();
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -30,6 +36,13 @@ const BasicInfo: FC<RouteComponentProps> = observer(() => {
       target: { value }
     } = event;
     setMonthlyIncome(+value);
+  };
+
+  const onBalanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { value }
+    } = event;
+    setCurrentBalance(+value);
   };
 
   const onExpenseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +72,19 @@ const BasicInfo: FC<RouteComponentProps> = observer(() => {
           type="number"
           value={user.monthlyIncome}
           onChange={e => onIncomeChange(e)}
+        />
+      </FormField>
+
+      <Paragraph>How much money do you have now?</Paragraph>
+      <Paragraph size="small">
+        Think of everything: savings, deposit, loose pocket change...
+      </Paragraph>
+      <FormField label="Current balance">
+        <TextInput
+          placeholder="Enter your current balance"
+          type="number"
+          value={user.currentBalance}
+          onChange={e => onBalanceChange(e)}
         />
       </FormField>
 

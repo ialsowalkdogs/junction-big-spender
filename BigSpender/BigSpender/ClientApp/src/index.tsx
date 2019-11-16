@@ -5,11 +5,25 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Grommet } from 'grommet';
 
+const myTheme = {
+  global: {
+    font: {
+      family: 'HelveticaNeue, Roboto'
+    },
+    text: {
+      color: 'white'
+    },
+    table: {
+      size: 'large'
+    }
+  }
+};
+
 ReactDOM.render(
-  <Grommet plain>
+  <Grommet theme={myTheme}>
     <App />
   </Grommet>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
