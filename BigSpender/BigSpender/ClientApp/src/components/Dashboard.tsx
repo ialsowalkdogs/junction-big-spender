@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import { RouteComponentProps, Link } from '@reach/router';
 import { Box, Heading, Paragraph, Meter } from 'grommet';
 import { useUserStore } from '../stores/UserStore';
+import { observer } from 'mobx-react';
 
-const Dashboard: FC<RouteComponentProps> = () => {
+const Dashboard: FC<RouteComponentProps> = observer(() => {
   const { user, goalPercentage } = useUserStore();
 
   // if (user.name === '')
@@ -83,6 +84,6 @@ const Dashboard: FC<RouteComponentProps> = () => {
       </Box>
     </Box>
   );
-};
+});
 
 export default Dashboard;
