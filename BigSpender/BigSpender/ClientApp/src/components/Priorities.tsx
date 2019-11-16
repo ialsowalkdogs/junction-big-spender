@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import ReactTags from 'react-tag-autocomplete';
 import { Button, Heading } from 'grommet';
+import { RouteComponentProps } from '@reach/router';
 
-const Priorities: React.FC = () => {
+const Priorities: FC<RouteComponentProps> = () => {
   const priorityOptions = [
     {
       id: 0,
