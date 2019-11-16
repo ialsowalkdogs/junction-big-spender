@@ -12,6 +12,9 @@ const myTheme = {
     },
     text: {
       color: 'white'
+    },
+    table: {
+      size: 'large'
     }
   }
 };
