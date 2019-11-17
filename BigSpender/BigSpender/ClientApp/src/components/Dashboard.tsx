@@ -32,9 +32,7 @@ const Dashboard: FC<RouteComponentProps> = observer(() => {
           <Heading level="1">Fine Pal</Heading>
           <Heading level="2">Balance</Heading>
           <Heading level="2">Saving plan</Heading>
-          <Link to="profile">
-            <Heading level="2">My profile</Heading>
-          </Link>
+          <Heading level="2">My profile</Heading>
         </Box>
 
         <Box pad="small">
