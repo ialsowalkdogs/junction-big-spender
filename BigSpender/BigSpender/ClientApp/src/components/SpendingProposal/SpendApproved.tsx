@@ -9,6 +9,7 @@ const SpendApproved: FC<RouteComponentProps> = () => {
       background="#202020"
       pad="large"
       style={{ height: '100%' }}
+      animation="fadeIn"
     >
       <Heading level="1">Pal says YES!</Heading>
 
