@@ -1,11 +1,16 @@
 import React, { FC, useState } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import { observer } from 'mobx-react';
-import { Box, Heading, Paragraph } from 'grommet';
+import { Box, Heading, Paragraph, Button } from 'grommet';
 
 const SpendingRequest: FC<RouteComponentProps> = observer(() => {
   return (
-    <Box alignContent="center">
+    <Box
+      alignContent="center"
+      background="#202020"
+      pad="large"
+      style={{ height: '100%' }}
+    >
       <Heading level="1">You are about to spend</Heading>
       <Paragraph
         size="xxlarge"
@@ -16,8 +21,17 @@ const SpendingRequest: FC<RouteComponentProps> = observer(() => {
         {`€ 249`}
       </Paragraph>
       <Paragraph color="status-unknown">
-        On item: <em>Millenium MX222BX Standard Set BK</em>
+        On item: <u>Millenium MX222BX Standard Set BK</u>
       </Paragraph>
+      <Paragraph>Do you want to continue?</Paragraph>
+
+      <Button
+        primary
+        color="status-ok"
+        label="Okay, I changed my mind. I don't need that."
+        margin={{ vertical: '10px' }}
+      />
+      <Button color="brand" label="Yes! Make a proposal to Pal" margin={{ vertical: '10px' }}/>
     </Box>
   );
 });
