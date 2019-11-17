@@ -1,9 +1,16 @@
 import React, { FC, useState } from 'react';
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, Redirect, navigate } from '@reach/router';
 import { observer } from 'mobx-react';
 import { Box, Heading, Paragraph, Button } from 'grommet';
 
-const SpendingRequest: FC<RouteComponentProps> = observer(() => {
+const SpendingRequest: FC<RouteComponentProps> = () => {
+  const giveDecision = () => {
+    const decide = Math.random() >= 0.5;
+    console.log(decide);
+    if (decide) navigate('spend-yes');
+    else navigate('spend-no');
+  };
+
   return (
     <Box
       alignContent="center"
@@ -31,9 +38,14 @@ const SpendingRequest: FC<RouteComponentProps> = observer(() => {
         label="Okay, I changed my mind. I don't need that."
         margin={{ vertical: '10px' }}
       />
-      <Button color="brand" label="Yes! Make a proposal to Pal" margin={{ vertical: '10px' }}/>
+      <Button
+        color="brand"
+        label="Yes! Make a proposal to Pal"
+        margin={{ vertical: '10px' }}
+        onClick={e => giveDecision()}
+      />
     </Box>
   );
-});
+};
 
 export default SpendingRequest;
