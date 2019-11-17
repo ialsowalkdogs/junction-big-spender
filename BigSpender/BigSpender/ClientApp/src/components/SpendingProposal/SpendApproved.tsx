@@ -5,7 +5,7 @@ import { Box, Heading, Paragraph, Button } from 'grommet';
 const SpendApproved: FC<RouteComponentProps> = () => {
   return (
     <Box
-      alignContent="center"
+      align="center"
       background="#202020"
       pad="large"
       style={{ height: '100%' }}

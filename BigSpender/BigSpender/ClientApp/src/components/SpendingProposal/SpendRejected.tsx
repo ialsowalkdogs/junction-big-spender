@@ -14,7 +14,7 @@ import {
 const SpendRejected: FC<RouteComponentProps> = () => {
   return (
     <Box
-      alignContent="center"
+      align="center"
       background="#202020"
       pad="large"
       style={{ height: '100%' }}
