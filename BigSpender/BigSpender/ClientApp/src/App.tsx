@@ -4,6 +4,7 @@ import Setup from './components/Setup';
 import Dashboard from './components/Dashboard';
 import { Router } from '@reach/router';
 import BasicInfo from './components/BasicInfo';
+import SpendingRequest from './components/SpendingProposal/SpendingRequest';
 
 const App: FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: FC = () => {
         <BasicInfo path="start" />
         <Setup path="setup" />
         <Priorities path="priorities" />
+        <SpendingRequest path="spend" />
         <Dashboard path="/" />
       </Router>
     </div>
