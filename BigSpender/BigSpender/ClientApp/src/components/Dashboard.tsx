@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { RouteComponentProps, Link } from '@reach/router';
-import { Box, Heading, Paragraph, Meter } from 'grommet';
+import { Box, Heading, Paragraph, Meter, Button } from 'grommet';
 import { useUserStore } from '../stores/UserStore';
 import { observer } from 'mobx-react';
 import BlockerSavings from './BlockerSavings';
@@ -32,9 +32,7 @@ const Dashboard: FC<RouteComponentProps> = observer(() => {
           <Heading level="1">Fine Pal</Heading>
           <Heading level="2">Balance</Heading>
           <Heading level="2">Saving plan</Heading>
-          <Link to="profile">
-            <Heading level="2">My profile</Heading>
-          </Link>
+          <Heading level="2">My profile</Heading>
         </Box>
 
         <Box pad="small">
@@ -45,6 +43,7 @@ const Dashboard: FC<RouteComponentProps> = observer(() => {
             margin={{ vertical: '10px' }}
             color="brand"
           >{`€ ${user.currentBalance}`}</Paragraph>
+          <Button primary color="brand" href="spend" label="Make a purchase" />
         </Box>
 
         <Box

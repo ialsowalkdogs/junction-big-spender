@@ -9,7 +9,7 @@ namespace BigSpender.Model
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public decimal BlockRate { get; set; }
+        public decimal? BlockRate { get; set; }
         public string Description { get; set; }
     }
 }

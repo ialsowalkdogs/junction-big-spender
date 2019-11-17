@@ -11,5 +11,6 @@ namespace BigSpender.Model
         public decimal Value { get; set; }
         public User User { get; set; }
         public Merchant Merchant { get; set; }
+        public Account Account { get; set; }
     }
 }
